@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">PQ Store</string>
+    <string name="default_web_google_client_id">351487032740-sn564674uk3hjfmga3kko5b0aunqquaq.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">6801657709923917</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">56789</string>
+
+</resources>
