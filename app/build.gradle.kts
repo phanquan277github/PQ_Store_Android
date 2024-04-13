@@ -54,7 +54,11 @@ dependencies {
 
     // Import the BoM for the Firebase platform
     implementation(platform("com.google.firebase:firebase-bom:32.8.0"))
+
+    implementation("io.github.muddz:styleabletoast:2.4.0") // Custom Toast
+    implementation("com.github.bumptech.glide:glide:4.16.0") // Image loading library
     implementation(libs.play.services.auth)
+    implementation(libs.firebase.firestore)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

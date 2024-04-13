@@ -21,17 +21,19 @@ class MainActivity : AppCompatActivity() {
         FacebookSdk.sdkInitialize(this) // khởi tạo facebook SDK lần đầu
         FirebaseApp.initializeApp(this) // khởi tạo Firebase
 
-        auth = FirebaseAuth.getInstance()
-        if(auth.currentUser == null){
-            startActivity(Intent(this, AuthenticationActivity::class.java))
-            finish()
-        } else {
-            startActivity(Intent(this, HomeActivity::class.java))
-            finish()
-        }
+//        auth = FirebaseAuth.getInstance()
+//        if(auth.currentUser == null){
+//            startActivity(Intent(this, AuthenticationActivity::class.java))
+//            finish()
+//        } else {
+//            startActivity(Intent(this, HomeActivity::class.java))
+//            finish()
+//        }
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
 }

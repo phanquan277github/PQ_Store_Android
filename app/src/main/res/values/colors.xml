@@ -3,4 +3,14 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="light_background">#FFFFFFFF</color>
+    <color name="my_primary">#FF219EFF</color>
+    <color name="my_secondary">#4B11BF</color>
+    <color name="textColor">#000</color>
+    <color name="transparentColor">#00FFFFFF</color>
+    <color name="textHint">#FFA6A6A6</color>
+    <color name="textDark">#000</color>
+    <color name="textLight">#FFF</color>
+    <color name="textError">#D60000</color>
+    <color name="border">#737373</color>
+
 </resources>

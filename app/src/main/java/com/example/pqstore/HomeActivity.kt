@@ -7,7 +7,9 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 import com.example.pqstore.databinding.ActivityHomeBinding
+import com.example.pqstore.fragment.HomeFragment
 import com.example.pqstore.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -21,12 +23,23 @@ class HomeActivity : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.textView.text = MainActivity.auth.currentUser?.displayName
-
-        binding.btnLogout.setOnClickListener() {
-            // call requestIdToken as follows
-            MainActivity.auth.signOut()
-            startActivity(Intent(this, MainActivity::class.java))
+        replaceFragment(HomeFragment())
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when(it.itemId) {
+                R.id.menuHome -> replaceFragment(HomeFragment())
+                R.id.menuNotification -> replaceFragment(HomeFragment())
+                R.id.menuFarvorite -> replaceFragment(HomeFragment())
+                R.id.menuCart -> replaceFragment(HomeFragment())
+            }
+            true
         }
+
+    }
+
+    private fun replaceFragment(fragment : Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(binding.frameLayout.id, fragment)
+        fragmentTransaction.commit()
     }
 }
