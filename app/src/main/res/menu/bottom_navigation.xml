@@ -14,5 +14,7 @@
     <item android:title=""
         android:id="@+id/menuCart"
         android:icon="@drawable/ic_shopping_cart"/>
-
+    <item android:title=""
+        android:id="@+id/menuProfile"
+        android:icon="@drawable/ic_profile"/>
 </menu>

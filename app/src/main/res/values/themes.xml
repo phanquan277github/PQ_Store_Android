@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.PQStore" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.PQStore" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
@@ -14,5 +14,4 @@
         <item name="stStrokeColor">#000</item>
         <item name="stIconStart">@drawable/baseline_cancel_white</item>
     </style>
-
 </resources>

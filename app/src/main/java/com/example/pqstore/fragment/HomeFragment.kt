@@ -5,17 +5,20 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
-import com.bumptech.glide.Glide
-import com.example.pqstore.ProductApdapter
-import com.example.pqstore.R
+import com.example.pqstore.adapter.PopularApdapter
+import com.example.pqstore.adapter.ProductApdapter
 import com.example.pqstore.databinding.FragmentHomeBinding
 import com.example.pqstore.model.ProductModel
+import com.example.pqstore.viewModel.MainViewModel
 
 class HomeFragment : Fragment() {
     private lateinit var binding: FragmentHomeBinding
-    private lateinit var adapter: ProductApdapter
-    private lateinit var products: ArrayList<ProductModel>
+    private val viewModel = MainViewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,19 +30,18 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
-        products = ArrayList<ProductModel>()
-        products.add(ProductModel("Nike arri fafawe afhakfb asdfhajfkhasf afhabfabfs afbabfkbajklfkafkb", 100.0, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-        products.add(ProductModel("Adidas comfort z1 db serial", 10000.00, "https://product.hstatic.net/200000099191/product/untitled-11_0dd5cf19bea146338873d19271503c65.jpg"))
-
-        adapter = ProductApdapter(products)
-        binding.rvProducts.adapter = adapter
-        binding.rvProducts.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-
+        initPopular()
         return binding.root
     }
+
+    private fun initPopular() {
+        binding.progressBarPopular.visibility = View.VISIBLE
+        viewModel.populars.observe(viewLifecycleOwner, Observer {
+            binding.rvPopular.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
+            binding.rvPopular.adapter = PopularApdapter(it)
+            binding.progressBarPopular.visibility = View.GONE
+        })
+        viewModel.loadPopular()
+    }
+
 }

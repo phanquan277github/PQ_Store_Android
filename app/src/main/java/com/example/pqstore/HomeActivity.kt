@@ -9,7 +9,10 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import com.example.pqstore.databinding.ActivityHomeBinding
+import com.example.pqstore.fragment.CartFragment
+import com.example.pqstore.fragment.FavoriteFragment
 import com.example.pqstore.fragment.HomeFragment
+import com.example.pqstore.fragment.ProfileFragment
 import com.example.pqstore.model.User
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -28,12 +31,12 @@ class HomeActivity : AppCompatActivity() {
             when(it.itemId) {
                 R.id.menuHome -> replaceFragment(HomeFragment())
                 R.id.menuNotification -> replaceFragment(HomeFragment())
-                R.id.menuFarvorite -> replaceFragment(HomeFragment())
-                R.id.menuCart -> replaceFragment(HomeFragment())
+                R.id.menuFarvorite -> replaceFragment(FavoriteFragment())
+                R.id.menuCart -> replaceFragment(CartFragment())
+                R.id.menuProfile -> replaceFragment(ProfileFragment())
             }
             true
         }
-
     }
 
     private fun replaceFragment(fragment : Fragment) {

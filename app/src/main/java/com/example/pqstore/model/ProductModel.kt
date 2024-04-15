@@ -1,3 +1,51 @@
 package com.example.pqstore.model
 
-data class ProductModel(val name: String, val price: Double, val imagePath: String)
+import android.os.Parcel
+import android.os.Parcelable
+
+data class ProductModel (
+    var name: String = "",
+    var price: Double = 0.0,
+    var images: ArrayList<String> = ArrayList(),
+    var sizes: ArrayList<String> = ArrayList(),
+    var colors: ArrayList<String> = ArrayList(),
+    var rating: Double = 0.0,
+    var quantity: Int = 0,
+    var description: String = ""
+): Parcelable {
+    constructor(parcel: Parcel): this (
+        parcel.readString().toString(),
+        parcel.readDouble(),
+        parcel.createStringArrayList() as ArrayList<String>,
+        parcel.createStringArrayList() as ArrayList<String>,
+        parcel.createStringArrayList() as ArrayList<String>,
+        parcel.readDouble(),
+        parcel.readInt(),
+        parcel.readString().toString()
+    )
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    override fun writeToParcel(dest: Parcel, flags: Int) {
+        dest.writeString(name)
+        dest.writeDouble(price)
+        dest.writeStringList(images)
+        dest.writeStringList(sizes)
+        dest.writeStringList(colors)
+        dest.writeDouble(rating)
+        dest.writeInt(quantity)
+        dest.writeString(description)
+    }
+
+    companion object CREATOR : Parcelable.Creator<ProductModel> {
+        override fun createFromParcel(parcel: Parcel): ProductModel {
+            return ProductModel(parcel)
+        }
+
+        override fun newArray(size: Int): Array<ProductModel?> {
+            return arrayOfNulls(size)
+        }
+    }
+}
