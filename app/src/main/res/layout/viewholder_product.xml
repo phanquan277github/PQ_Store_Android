@@ -31,9 +31,9 @@
             android:layout_width="34dp"
             android:layout_height="34dp"
             android:layout_marginTop="8dp"
+            android:background="@drawable/ic_favorite"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_favorite" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtPrice"

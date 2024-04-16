@@ -5,15 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pqstore.adapter.PopularApdapter
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.pqstore.adapter.CategoryApdapter
 import com.example.pqstore.adapter.ProductApdapter
 import com.example.pqstore.databinding.FragmentHomeBinding
-import com.example.pqstore.model.ProductModel
 import com.example.pqstore.viewModel.MainViewModel
 
 class HomeFragment : Fragment() {
@@ -30,15 +27,26 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(layoutInflater)
 
+        initCategories()
         initPopular()
         return binding.root
+    }
+
+    private fun initCategories() {
+        binding.progressBarCategory.visibility = View.VISIBLE
+        viewModel.categories.observe(viewLifecycleOwner, Observer {
+            binding.rvCategory.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+            binding.rvCategory.adapter = CategoryApdapter(it)
+            binding.progressBarCategory.visibility = View.GONE
+        })
+        viewModel.loadCategories()
     }
 
     private fun initPopular() {
         binding.progressBarPopular.visibility = View.VISIBLE
         viewModel.populars.observe(viewLifecycleOwner, Observer {
             binding.rvPopular.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-            binding.rvPopular.adapter = PopularApdapter(it)
+            binding.rvPopular.adapter = ProductApdapter(it)
             binding.progressBarPopular.visibility = View.GONE
         })
         viewModel.loadPopular()

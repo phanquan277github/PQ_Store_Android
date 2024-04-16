@@ -5,7 +5,7 @@ import android.content.Intent
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -14,7 +14,7 @@ import com.example.pqstore.R
 import com.example.pqstore.databinding.ViewholderProductBinding
 import com.example.pqstore.model.ProductModel
 
-class ProductApdapter (val items: MutableList<ProductModel>) : RecyclerView.Adapter<ProductApdapter.ViewHolder>() {
+class FavoriteApdapter (val items: MutableList<ProductModel>) : RecyclerView.Adapter<FavoriteApdapter.ViewHolder>() {
     private var context: Context? = null
     inner class ViewHolder(val binding: ViewholderProductBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -42,16 +42,11 @@ class ProductApdapter (val items: MutableList<ProductModel>) : RecyclerView.Adap
                 .centerCrop()
                 .placeholder(R.drawable.ic_loading_spinner)
                 .into(holder.binding.image)
-            // click vào sản phẩm chuyển tới trang chi tiết của nó
             holder.itemView.setOnClickListener() {
                 val intent = Intent(holder.itemView.context, ProductDetailsActivity::class.java)
                 val item: ProductModel = items[position]
                 intent.putExtra("object", item)
                 holder.itemView.context.startActivity(intent)
-            }
-            // thêm vào yêu thích
-            holder.binding.btnFavorite.setOnClickListener() {
-               Toast.makeText(context, "Yêu thích", Toast.LENGTH_SHORT).show()
             }
         }
     }
