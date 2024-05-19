@@ -7,5 +7,4 @@
     android:scaleType="fitCenter"
     android:adjustViewBounds="false">
 
-
 </ImageView>

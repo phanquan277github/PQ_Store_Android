@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:layout_margin="5dp">
+
+    <LinearLayout
+        android:id="@+id/selectContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:orientation="vertical"
+        android:padding="6dp"
+        android:background="@drawable/border_square" >
+
+        <TextView
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16dp"
+            android:textColor="@color/textDark"
+            android:text="Tên Người Nhận" />
+        <TextView
+            android:id="@+id/txtAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16dp"
+            android:textColor="@color/textDark"
+            android:ellipsize="none"
+            android:text="Địa Chỉ" />
+        <TextView
+            android:id="@+id/txtPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="16dp"
+            android:textColor="@color/textDark"
+            android:text="Số Điện Thoại" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:minWidth="70dp"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:background="@drawable/border_square">
+
+        <ImageView
+            android:id="@+id/btnEdit"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_edit"
+            android:scaleType="fitCenter"
+            android:backgroundTint="@color/darkGrey" />
+        <TextView
+            android:id="@+id/btnDelete"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/ic_delete"
+            android:scaleType="fitCenter"
+            android:backgroundTint="@color/design_default_color_error" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.pqstore.adapter.ProductApdapter
+import com.example.pqstore.adapter.ProductAdapter
 import com.example.pqstore.databinding.FragmentFavoriteBinding
-import com.example.pqstore.viewModel.MainViewModel
+import com.example.pqstore.model.MainViewModel
 
 class FavoriteFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteBinding
@@ -32,7 +32,7 @@ class FavoriteFragment : Fragment() {
         binding.progressBar.visibility = View.VISIBLE
         viewModel.favorites.observe(viewLifecycleOwner, Observer {
             binding.rvFavorite.layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-            binding.rvFavorite.adapter = ProductApdapter(it)
+            binding.rvFavorite.adapter = ProductAdapter(it)
             binding.progressBar.visibility = View.GONE
         })
         viewModel.loadFavorite()

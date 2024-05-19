@@ -42,20 +42,10 @@
             android:layout_marginTop="4dp"
             android:text="000.000"
             android:textColor="@color/my_primary"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/image" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:text=" &#x20AB;"
-            android:textStyle="bold"
-            android:textColor="@color/my_primary"
-            app:layout_constraintStart_toEndOf="@+id/txtPrice"
-            app:layout_constraintTop_toTopOf="@+id/txtPrice" />
 
         <TextView
             android:id="@+id/txtRating"
@@ -71,7 +61,6 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="6dp"
             android:background="@drawable/ic_star"
             android:backgroundTint="@color/rate"
             app:layout_constraintEnd_toStartOf="@+id/txtRating"
@@ -81,10 +70,10 @@
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="3"
             android:text="Product Name"
             android:textColor="@color/textDark"
-            android:textSize="20dp"
-            android:maxLines="3"
+            android:textSize="17dp"
             android:textStyle="normal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtPrice" />

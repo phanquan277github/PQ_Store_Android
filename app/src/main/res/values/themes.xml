@@ -15,4 +15,23 @@
         <item name="stStrokeColor">#000</item>
         <item name="stIconStart">@drawable/baseline_cancel_white</item>
     </style>
+
+    <!-- Customize Toast -->
+    <style name="NotifyToast">
+        <item name="stTextColor">#FFFFFF</item>
+        <item name="stColorBackground">@color/my_primary</item>
+        <item name="stStrokeWidth">1dp</item>
+        <item name="stStrokeColor">#000</item>
+        <item name="stIconStart">@drawable/ic_notification</item>
+    </style>
+
+    <!-- Customize Toast -->
+    <style name="WarningToast">
+        <item name="stTextColor">#FFFFFF</item>
+        <item name="stColorBackground">#FFE226</item>
+        <item name="stStrokeWidth">1dp</item>
+        <item name="stStrokeColor">#000</item>
+        <item name="stIconStart">@drawable/ic_notification_important</item>
+    </style>
+
 </resources>

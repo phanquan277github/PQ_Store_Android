@@ -1,8 +1,14 @@
 package com.example.pqstore.model
 
-data class UserModel(val userName: String, val email: String)
-    object User {
-        var username: String = ""
-        var email: String = ""
-    }
+import com.google.gson.annotations.SerializedName
 
+data class UserModel(
+    @SerializedName("uid")
+    var uid: String = "",
+    @SerializedName("name")
+    var name: String = "",
+    @SerializedName("email")
+    var email: String = "",
+    @SerializedName("avatar")
+    var avatar: String = ""
+)

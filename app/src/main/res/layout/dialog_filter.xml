@@ -67,6 +67,7 @@
                 android:textStyle="bold|italic"/>
 
             <RadioGroup
+                android:id="@+id/radioGroup"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <RadioButton
@@ -106,91 +107,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="Kích cỡ"
+                android:text="Hãng"
                 android:textSize="16sp"
                 android:textColor="@color/textDark"
                 android:textStyle="bold|italic"/>
 
-            <RadioGroup
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-                <GridLayout
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvBrand"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:columnCount="5" >
-                    <RadioButton
-                        android:id="@+id/size36"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="36" />
-                    <RadioButton
-                        android:id="@+id/size37"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="37" />
-                    <RadioButton
-                        android:id="@+id/size38"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="38" />
-                    <RadioButton
-                        android:id="@+id/size39"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="39" />
-                    <RadioButton
-                        android:id="@+id/size40"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="40" />
-                    <RadioButton
-                        android:id="@+id/size41"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="41" />
-                    <RadioButton
-                        android:id="@+id/size42"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="42" />
-                    <RadioButton
-                        android:id="@+id/size43"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="43" />
-                    <RadioButton
-                        android:id="@+id/size44"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="44" />
-                    <RadioButton
-                        android:id="@+id/size45"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="fill_horizontal"
-                        android:layout_columnWeight="1"
-                        android:text="45" />
-                </GridLayout>
-            </RadioGroup>
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
 
         </LinearLayout>
 

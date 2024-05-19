@@ -4,54 +4,40 @@ import android.os.Build
 import android.os.Parcel
 import android.os.Parcelable
 import androidx.annotation.RequiresApi
+import com.google.gson.annotations.SerializedName
 
-data class ProductModel (
-    var name: String = "",
-    var price: Double = 0.0,
-    var images: ArrayList<String> = ArrayList(),
-    var sizes: ArrayList<String> = ArrayList(),
-    var colors: ArrayList<String> = ArrayList(),
+data class ProductModel(
+    @SerializedName("id")
+    var id: Int,
+    @SerializedName("name")
+    var name :String,
+    @SerializedName("price")
+    var price :Double,
+    @SerializedName("thumbnail_path")
+    var imagePath :String,
+    @SerializedName("favorite")
+    var favorite :Boolean = false,
+    @SerializedName("images")
+    var images: ArrayList<ImageModel> = ArrayList(),
+    @SerializedName("sizes")
+    var sizes: ArrayList<SizeModel> = ArrayList(),
     var rating: Double = 0.0,
     var quantity: Int = 0,
-    var description: String = "",
-    var favorite: Boolean = false
-): Parcelable {
-    constructor(parcel: Parcel): this (
-        parcel.readString().toString(),
-        parcel.readDouble(),
-        parcel.createStringArrayList() as ArrayList<String>,
-        parcel.createStringArrayList() as ArrayList<String>,
-        parcel.createStringArrayList() as ArrayList<String>,
-        parcel.readDouble(),
-        parcel.readInt(),
-        parcel.readString().toString(),
-        parcel.readInt() != 0
-    )
+    var description: String = ""
+)
 
-    override fun describeContents(): Int {
-        return 0
-    }
+data class ImageModel(
+    @SerializedName("id")
+    var id: Int,
+    @SerializedName("image_path")
+    var imagePath: String
+)
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun writeToParcel(dest: Parcel, flags: Int) {
-        dest.writeString(name)
-        dest.writeDouble(price)
-        dest.writeStringList(images)
-        dest.writeStringList(sizes)
-        dest.writeStringList(colors)
-        dest.writeDouble(rating)
-        dest.writeInt(quantity)
-        dest.writeString(description)
-        dest.writeInt(if (favorite) 1 else 0)
-    }
-
-    companion object CREATOR : Parcelable.Creator<ProductModel> {
-        override fun createFromParcel(parcel: Parcel): ProductModel {
-            return ProductModel(parcel)
-        }
-
-        override fun newArray(size: Int): Array<ProductModel?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+data class SizeModel(
+    @SerializedName("id")
+    var id: Int,
+    @SerializedName("size")
+    var size: String,
+    @SerializedName("quantity")
+    var quantity: String
+)

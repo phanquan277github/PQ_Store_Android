@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.pqstore.R
 import com.example.pqstore.databinding.ActivityAuthenticationBinding
+import com.example.pqstore.model.UserModel
+import com.google.firebase.auth.FirebaseAuth
 
 @Suppress("DEPRECATION")
 class AuthenticationActivity : AppCompatActivity() {

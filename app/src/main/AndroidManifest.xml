@@ -13,21 +13,49 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PQStore"
+        android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".CategoryActivity"
+            android:name=".activity.SelectCommuneWardActivity"
             android:exported="false" />
         <activity
-            android:name=".EditProfileActivity"
+            android:name=".activity.SelectDistrictActivity"
             android:exported="false" />
         <activity
-            android:name=".ProductDetailsActivity"
+            android:name=".activity.SelectProvinceActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.AddAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".overlayDialog.AddressOverlayDialog"
+            android:exported="false" />
+        <activity
+            android:name=".activity.OrderActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserOrdersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.UserAddressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SearchResultActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.EditProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.ProductDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".authentications.AuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name=".HomeActivity"
+            android:name=".activity.HomeActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

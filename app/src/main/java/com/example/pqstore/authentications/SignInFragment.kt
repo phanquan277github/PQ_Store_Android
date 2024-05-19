@@ -9,12 +9,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.pqstore.HomeActivity
+import com.example.pqstore.activity.HomeActivity
 import com.example.pqstore.MainActivity
 import com.example.pqstore.R
+import com.example.pqstore.api.RetrofitClient
 import com.example.pqstore.databinding.FragmentSignInBinding
+import com.example.pqstore.model.Message
+import com.example.pqstore.model.UserModel
 import com.facebook.AccessToken
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
@@ -29,6 +31,9 @@ import com.google.firebase.auth.FacebookAuthProvider
 import com.google.firebase.auth.FirebaseAuthException
 import com.google.firebase.auth.GoogleAuthProvider
 import io.github.muddz.styleabletoast.StyleableToast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class SignInFragment : Fragment() {
     private lateinit var binding: FragmentSignInBinding
@@ -122,7 +127,28 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Đăng nhập thành công bằng Google
-                    startActivity(Intent(context, HomeActivity::class.java))
+                    val user = MainActivity.auth.currentUser
+                    val uid = user?.uid
+                    val email = user?.email
+                    val displayName = user?.displayName
+                    val photoUrl = user?.photoUrl
+
+                    RetrofitClient.getRetrofitClient().authentication("login", uid=uid!!, email=email!!, name=displayName!!, avatar=photoUrl.toString()).enqueue(object:
+                        Callback<Message> {
+                        override fun onResponse(call: Call<Message>, response: Response<Message>) {
+                            if (response.isSuccessful) {
+                                val mess: Message? = response.body()
+                                if (mess!!.success == 1) {
+                                    startActivity(Intent(requireContext(), HomeActivity::class.java))
+                                } else {
+                                    StyleableToast.makeText(requireContext(), mess.message, R.style.NotifyToast).show()
+                                }
+                            }
+                        }
+                        override fun onFailure(call: Call<Message>, t: Throwable) {
+                            Log.e("SignInFragment", t.localizedMessage)
+                        }
+                    })
                 } else {
                     // If sign in fails, display a message to the user.
                     val exception = task.exception as FirebaseAuthException
@@ -143,6 +169,28 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
+                    val user = MainActivity.auth.currentUser
+                    val uid = user?.uid
+                    val email = user?.email
+                    val displayName = user?.displayName
+                    val photoUrl = user?.photoUrl
+
+                    RetrofitClient.getRetrofitClient().authentication("login", uid=uid!!, email=email!!, name=displayName!!, avatar=photoUrl.toString()).enqueue(object:
+                        Callback<Message> {
+                        override fun onResponse(call: Call<Message>, response: Response<Message>) {
+                            if (response.isSuccessful) {
+                                val mess: Message? = response.body()
+                                if (mess!!.success == 1) {
+                                    startActivity(Intent(requireContext(), HomeActivity::class.java))
+                                } else {
+                                    StyleableToast.makeText(requireContext(), mess.message, R.style.NotifyToast).show()
+                                }
+                            }
+                        }
+                        override fun onFailure(call: Call<Message>, t: Throwable) {
+                            Log.e("SignInFragment", t.localizedMessage)
+                        }
+                    })
                     startActivity(Intent(context, HomeActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
@@ -154,8 +202,6 @@ class SignInFragment : Fragment() {
                         StyleableToast.makeText(requireContext(), "Lỗi: " + errorCode, R.style.ErrorToast).show()
                     }
                 }
-            }.addOnFailureListener {
-                Log.e("DEBUG AUTHEN", it.toString())
             }
     }
 
@@ -164,15 +210,38 @@ class SignInFragment : Fragment() {
             .addOnCompleteListener() { task ->
                 if (task.isSuccessful) {
                     // Sign in success, update UI with the signed-in user's information
-                    Log.d(TAG, "signInWithEmail:success")
+                    val user = MainActivity.auth.currentUser
+                    val uid = user?.uid
+                    val displayName = if(user?.displayName != null ) user.displayName else ""
+                    val photoUrl = if(user?.photoUrl != null ) user.displayName else ""
+
+                    RetrofitClient.getRetrofitClient().authentication("login", uid=uid!!, email=email, name="$displayName", avatar=photoUrl.toString()).enqueue(object:
+                        Callback<Message> {
+                        override fun onResponse(call: Call<Message>, response: Response<Message>) {
+                            if (response.isSuccessful) {
+                                val mess: Message? = response.body()
+                                if (mess!!.success == 1) {
+                                    startActivity(Intent(requireContext(), HomeActivity::class.java))
+                                } else {
+                                    StyleableToast.makeText(requireContext(), mess.message, R.style.NotifyToast).show()
+                                }
+                            }
+                        }
+                        override fun onFailure(call: Call<Message>, t: Throwable) {
+                            Log.e("SignInFragment", t.localizedMessage)
+                        }
+                    })
                     startActivity(Intent(context, HomeActivity::class.java))
                 } else {
                     // If sign in fails, display a message to the user.
-                   StyleableToast.makeText(requireContext(), "Đăng nhập thất bại. Vui lòng thử lại!", R.style.ErrorToast).show()
+                    val exception = task.exception as FirebaseAuthException
+                    val errorCode = exception.errorCode
+                    if (errorCode == "ERROR_ACCOUNT_EXISTS_WITH_DIFFERENT_CREDENTIAL") {
+                        StyleableToast.makeText(requireContext(), "Email của tài khoản này đã được sử dụng trước đó!", R.style.ErrorToast).show()
+                    } else {
+                        StyleableToast.makeText(requireContext(), "Lỗi: " + errorCode, R.style.ErrorToast).show()
+                    }
                 }
             }
     }
-
-
-
 }

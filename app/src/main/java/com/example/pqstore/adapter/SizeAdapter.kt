@@ -3,16 +3,26 @@ package com.example.pqstore.adapter
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pqstore.R
 import com.example.pqstore.databinding.ViewholderSizeBinding
+import com.example.pqstore.model.SizeModel
 
 @Suppress("DEPRECATION")
-class SizeAdapter (val items: MutableList<String>) : RecyclerView.Adapter<SizeAdapter.ViewHolder>() {
+class SizeAdapter(val items: ArrayList<SizeModel>) : RecyclerView.Adapter<SizeAdapter.ViewHolder>() {
     private lateinit var context: Context
     private var selectedPosition = -1
     private var lastSelectedPosition = -1
+    private var listener: OnSizeClickListener? = null
+
+    interface OnSizeClickListener {
+        fun onSizeClick(size: String)
+    }
+
+    // Setter để gán giá trị cho listener
+    fun setOnSizeClickListener(listener: OnSizeClickListener) {
+        this.listener = listener
+    }
 
     inner class ViewHolder(val binding: ViewholderSizeBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -23,13 +33,16 @@ class SizeAdapter (val items: MutableList<String>) : RecyclerView.Adapter<SizeAd
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.binding.txtSize.text = items[position]
+        val item: SizeModel = items[position]
+        holder.binding.txtSize.text = item.size
 
         holder.binding.root.setOnClickListener() {
             lastSelectedPosition = selectedPosition
             selectedPosition = position
             notifyItemChanged(lastSelectedPosition)
             notifyItemChanged(selectedPosition)
+
+            listener?.onSizeClick(item.size)
         }
 
         if (selectedPosition == position) {

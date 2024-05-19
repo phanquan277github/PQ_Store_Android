@@ -6,7 +6,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductDetailsActivity">
+    tools:context=".activity.ProductDetailsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -49,6 +49,7 @@
                 android:id="@+id/sliderImages"
                 android:layout_width="match_parent"
                 android:layout_height="290dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/shape_rectangle_radius"
                 android:backgroundTint="@color/lightGrey"/>
 
@@ -85,7 +86,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Product Name"
+                    android:text="................"
                     android:textSize="18sp"
                     android:textColor="@color/textDark" />
 
@@ -94,14 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="20sp"
-                    android:text="000.000.000"
-                    android:textStyle="bold"
-                    android:textColor="@color/my_primary" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:text="&#x20AB;"
+                    android:text="........"
                     android:textStyle="bold"
                     android:textColor="@color/my_primary" />
             </LinearLayout>
@@ -123,7 +117,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="6dp"
                     android:background="@drawable/ic_star"
                     android:backgroundTint="@color/rate" />
                 <TextView
@@ -132,7 +125,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="@color/textDark"
                     android:textSize="16sp"
-                    android:text="5" />
+                    android:text="..." />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
@@ -160,7 +153,7 @@
                     android:layout_height="wrap_content"
                     android:textSize="18sp"
                     android:textColor="@color/textDark"
-                    android:text="Giày tập cầu lông Thunder LITE AYTS020-1, với phối màu đơn giản, đơn giản và trang nhã, thời trang và đa năng. Phong cách nhập cảnh cơ bản mới được thiết kế với các tính năng theo chủ đề. Hoa đáy cơ bản và thiết kế màu sắc của đế ngoài với các màu tương phản ở mặt trước và mặt sau đảm bảo chức năng và tăng điểm nổi bật cho thiết kế. Phần thân giày sử dụng cấu trúc kết hợp giữa da và vải tổng hợp, mặt ngoài được thiết kế với bề mặt da dạng lưới, nâng đỡ bàn chân một cách an toàn và mặt trong sử dụng cấu trúc vải để thông gió và tản nhiệt. Cấu trúc chống valgus hình tam giác đế ngoài cung cấp hỗ trợ bên trong khi vẫn đảm bảo uốn cong. Thiết kế đế ngoài hạt chống trượt hình kim cương có độ bám chắc chắn và giúp bạn di chuyển trên sân." />
+                    android:text="........................................" />
             </LinearLayout>
 
         </LinearLayout>
@@ -168,32 +161,29 @@
     </ScrollView>
 
     <LinearLayout
+        android:id="@+id/btnAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@drawable/bg_button_radius"
+        android:backgroundTint="@color/my_primary"
         android:layout_alignParentBottom="true"
         android:layout_margin="8dp">
         <ImageButton
-            android:id="@+id/imageButton3"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginHorizontal="6dp"
-            android:background="@drawable/bg_button_radius"
-            android:backgroundTint="@color/grey"
+            android:background="@color/transparentColor"
             app:srcCompat="@drawable/ic_shopping_cart"
             app:tint="@color/black" />
         <androidx.appcompat.widget.AppCompatButton
             style="@style/Widget.AppCompat.Button"
-            android:id="@+id/btnAddToCart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="6dp"
             android:layout_weight="1"
-            android:background="@drawable/bg_button_radius"
-            android:backgroundTint="@color/my_primary"
-            android:textSize="18sp"
-            android:textColor="@color/textLight"
-            android:text="Mua ngay" />
+            android:background="@color/transparentColor"
+            android:textSize="16sp"
+            android:textColor="@color/textDark"
+            android:text="Thêm vào giỏ hàng" />
     </LinearLayout>
 
 </RelativeLayout>

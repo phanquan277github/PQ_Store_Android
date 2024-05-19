@@ -10,6 +10,7 @@ android {
 
     buildFeatures {
         viewBinding = true
+        dataBinding = true
     }
 
     defaultConfig {
@@ -64,9 +65,21 @@ dependencies {
 
     implementation("io.github.muddz:styleabletoast:2.4.0") // Custom Toast
     implementation("com.github.bumptech.glide:glide:4.16.0") // Image loading library
-    implementation("androidx.compose.material3:material3:1.2.1") // Google Material
+    // Google Material
+    implementation("androidx.compose.material3:material3:1.2.1")
+    implementation("androidx.compose.material3:material3-window-size-class:1.2.1")
+
     implementation("com.tbuonomo:dotsindicator:5.0") // Dots indicator
+
+    // data API
     implementation("com.google.code.gson:gson:2.9.1")
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    implementation("com.squareup.retrofit2:adapter-rxjava3:2.9.0")
+    implementation("com.squareup.okhttp3:okhttp:3.12.1")
+    implementation("com.squareup.okhttp3:logging-interceptor:3.6.0")
+
+    implementation("androidx.fragment:fragment-ktx:1.3.0")
 
     implementation(libs.play.services.auth)
     implementation(libs.firebase.firestore)
