@@ -161,7 +161,6 @@
     </ScrollView>
 
     <LinearLayout
-        android:id="@+id/btnAddToCart"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -175,8 +174,8 @@
             android:background="@color/transparentColor"
             app:srcCompat="@drawable/ic_shopping_cart"
             app:tint="@color/black" />
-        <androidx.appcompat.widget.AppCompatButton
-            style="@style/Widget.AppCompat.Button"
+        <Button
+            android:id="@+id/btnAddToCart"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

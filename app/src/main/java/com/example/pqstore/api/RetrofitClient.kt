@@ -7,7 +7,7 @@ object RetrofitClient {
 
     fun getRetrofitClient() : ApiInterface {
         // thay đường dẫn API vào baseUrl
-        return Retrofit.Builder().baseUrl("http://192.168.1.11:80")
+        return Retrofit.Builder().baseUrl("http://192.168.100.23:80")
             .addConverterFactory(GsonConverterFactory.create()).build()
             .create(ApiInterface::class.java)
     }

@@ -40,20 +40,22 @@ class CartFragment : Fragment() {
 
     private fun initCartList() {
         viewModel.cartItems.observe(viewLifecycleOwner, Observer {
-            binding.txtCartEmpty.visibility = if (it.size == 0) View.VISIBLE else View.GONE
             binding.scrollView2.visibility = if (it.size == 0) View.GONE else View.VISIBLE
-
-            binding.rvCart.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-            binding.rvCart.adapter = CartAdapter(it, this.requireContext(), object: ChangeNumberItemsListener {
-                override fun onChanged() {
-                    calculateTotal(it)
+            binding.txtCartEmpty.visibility = if (it.size == 0) View.VISIBLE else View.GONE
+            binding.constraintLayout4.visibility = if (it.size == 0) View.GONE else View.VISIBLE
+            if (it.size != 0) {
+                binding.rvCart.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+                binding.rvCart.adapter = CartAdapter(it, this.requireContext(), object: ChangeNumberItemsListener {
+                    override fun onChanged() {
+                        calculateTotal(it)
+                    }
+                })
+                binding.btnOrder.setOnClickListener() {
+                    val intent = Intent(requireContext(), OrderActivity::class.java)
+                    startActivity(intent)
                 }
-            })
-            binding.btnOrder.setOnClickListener() {
-                val intent = Intent(requireContext(), OrderActivity::class.java)
-                startActivity(intent)
+                calculateTotal(it)
             }
-            calculateTotal(it)
         })
         viewModel.loadCartItems()
     }

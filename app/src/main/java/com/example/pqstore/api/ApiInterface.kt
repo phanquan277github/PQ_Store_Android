@@ -80,8 +80,8 @@ interface ApiInterface {
     @GET("/api/controllers/home.php?action=slideshows")
     fun getSliders(): Call<List<ImageModel>>
 
-    @GET("/api/controllers/home.php?action=suggestCategories")
-    fun getCategories(): Call<List<CategoryModel>>
+    @GET("/api/controllers/home.php?action=categories")
+    fun getCategories(@Query("id") id: Int): Call<List<CategoryModel>>
 
     @GET("/api/controllers/product.php?action=search")
     fun search(@Query("uid") userUid: String, @Query("searchKey") searchKey: String): Call<List<ProductModel>>
@@ -90,7 +90,11 @@ interface ApiInterface {
     fun getPopulars(@Query("uid") userUid: String): Call<List<ProductModel>>
 
     @GET("/api/controllers/product.php?action=catalogProducts")
-    fun getCatalogProducts(@Query("uid") userUid: String, @Query("cateId") cateId: Int): Call<List<ProductModel>>
+    fun getCatalogProducts(
+        @Query("uid") userUid: String,
+        @Query("cateId") cateId: Int,
+        @Query("sortType") sortType: String
+    ): Call<List<ProductModel>>
 
     @GET("/api/controllers/user.php?action=favorite")
     fun getFavorites(@Query("uid") userUid: String): Call<List<ProductModel>>

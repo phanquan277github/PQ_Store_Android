@@ -93,7 +93,7 @@ class HomeFragment : Fragment() {
             }
             binding.progressBarCategory.visibility = View.GONE
         })
-        viewModel.loadCategories()
+        viewModel.loadCategories(1)
     }
 
     private fun initPopular() {

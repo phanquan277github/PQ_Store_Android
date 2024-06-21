@@ -20,13 +20,14 @@ class SearchResultActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         getBundle()
-        binding.btnFilter.setOnClickListener() {
-            val fragment = FilterOverlayDialog()
-            fragment.show(supportFragmentManager, "overlay_dialog")
-        }
+//        binding.btnFilter.setOnClickListener() {
+//            val fragment = FilterOverlayDialog(0)
+//            fragment.show(supportFragmentManager, "overlay_dialog")
+//        }
         binding.btnBack.setOnClickListener() {
             finish()
         }
+        binding.btnFilter.visibility = View.GONE
     }
 
     private fun getBundle() {

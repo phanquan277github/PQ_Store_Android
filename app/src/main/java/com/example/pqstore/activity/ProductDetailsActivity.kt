@@ -83,6 +83,7 @@ class ProductDetailsActivity : AppCompatActivity(), SizeAdapter.OnSizeClickListe
                     }
                     override fun onFailure(call: Call<Message>, t: Throwable) {
                         Log.e("ProductAdapter", t.localizedMessage)
+                        StyleableToast.makeText(context, t.message, R.style.NotifyToast).show()
                     }
                 })
             }

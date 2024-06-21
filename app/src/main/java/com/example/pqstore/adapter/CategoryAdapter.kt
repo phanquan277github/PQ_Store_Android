@@ -41,6 +41,7 @@ class CategoryAdapter(val items: MutableList<CategoryModel>) : RecyclerView.Adap
             holder.itemView.setOnClickListener() {
                 val intent = Intent(holder.itemView.context, CategoryActivity::class.java)
                 intent.putExtra("id", item.id)
+                intent.putExtra("name", item.name)
                 holder.itemView.context.startActivity(intent)
             }
         }

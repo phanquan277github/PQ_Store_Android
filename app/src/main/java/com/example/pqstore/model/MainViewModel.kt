@@ -21,9 +21,6 @@ class MainViewModel() : ViewModel() {
     private val _favorites = MutableLiveData<MutableList<ProductModel>>()
     val favorites: LiveData<MutableList<ProductModel>> = _favorites
 
-    private val _categories = MutableLiveData<MutableList<CategoryModel>>()
-    val categories: LiveData<MutableList<CategoryModel>> = _categories
-
     private val _cartItems = MutableLiveData<MutableList<CartModel>>()
     val cartItems: LiveData<MutableList<CartModel>> = _cartItems
     fun loadCartItems() {
@@ -102,8 +99,10 @@ class MainViewModel() : ViewModel() {
         })
     }
 
-    fun loadCategories() {
-        RetrofitClient.getRetrofitClient().getCategories().enqueue(object: Callback<List<CategoryModel>> {
+    private val _categories = MutableLiveData<MutableList<CategoryModel>>()
+    val categories: LiveData<MutableList<CategoryModel>> = _categories
+    fun loadCategories(cateId: Int) {
+        RetrofitClient.getRetrofitClient().getCategories(cateId).enqueue(object: Callback<List<CategoryModel>> {
             override fun onResponse(
                 call: Call<List<CategoryModel>>,
                 response: Response<List<CategoryModel>>
@@ -121,9 +120,9 @@ class MainViewModel() : ViewModel() {
 
     private val _productsInCategory = MutableLiveData<MutableList<ProductModel>>()
     val catalogProducts: LiveData<MutableList<ProductModel>> = _productsInCategory
-    fun loadCatalogProducts(cateId: Int) {
+    fun loadCatalogProducts(cateId: Int, sortType: String) {
         val uid = MainActivity.auth.currentUser?.uid
-        RetrofitClient.getRetrofitClient().getCatalogProducts(uid!!, cateId).enqueue(object: Callback<List<ProductModel>> {
+        RetrofitClient.getRetrofitClient().getCatalogProducts(uid!!, cateId, sortType).enqueue(object: Callback<List<ProductModel>> {
             override fun onResponse(call: Call<List<ProductModel>>, response: Response<List<ProductModel>>) {
                 if (response.isSuccessful) {
                     _productsInCategory.postValue(response.body() as ArrayList<ProductModel>?)
